@@ -6,7 +6,35 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-  }
+    children:[
+      {
+        path: 'news',
+        loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
+      },
+      {
+        path: 'quemsomos',
+        loadChildren: () => import('./quemsomos/quemsomos.module').then( m => m.QuemsomosPageModule)
+      },
+      {
+        path: 'cat-mentores',
+        loadChildren: () => import('./cat-mentores/cat-mentores.module').then( m => m.CatMentoresPageModule)
+      },
+      {
+        path: 'det-mentores',
+        loadChildren: () => import('./det-mentores/det-mentores.module').then( m => m.DetMentoresPageModule)
+      },
+      {
+        path: 'agenda',
+        loadChildren: () => import('./agenda/agenda.module').then( m => m.AgendaPageModule)
+      },
+      {
+        path: '',
+        redirectTo: 'news',
+        pathMatch: 'full'
+      }
+    ]
+  },
+
 ];
 
 @NgModule({

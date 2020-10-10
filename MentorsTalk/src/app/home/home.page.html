@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Mentor's Talk
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home Page</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="news">
+      <ion-icon name="newspaper-outline"></ion-icon>      
+      <ion-label>News</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="quemsomos">
+      <ion-icon name="help-circle-outline"></ion-icon>      
+      <ion-label>App</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="cat-mentores">
+      <ion-icon name="people-outline"></ion-icon>      
+      <ion-label>Mentores</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="det-mentores">
+      <ion-icon name="add-circle-outline"></ion-icon>      
+      <ion-label>Detail</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="agenda">
+      <ion-icon name="calendar-outline"></ion-icon>      
+      <ion-label>Agenda</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
