@@ -14,10 +14,6 @@
 .TextPrincipal{   
     font-size: 25px;  
 }
-.news-icon{
-    width: 1.5em;
-    height:1.5em;
-}
 .Cards{
     margin: 0px 8px 0px 8px;   
     height: 5em;  
@@ -40,4 +36,20 @@ ion-content{
     margin: 0px 0px 0px 8px;
     font-size: 18px;
     color:#00aaa4; 
+}
+.jumpicon{
+    animation: jump 0.5s;
+    
+}
+
+@keyframes jump{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);        
+    }
+    100%{
+        transform: scale(1);
+    }
 }
