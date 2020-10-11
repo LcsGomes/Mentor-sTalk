@@ -27,6 +27,7 @@
 .update{
     margin: 10px 15px 10px 15px;   
     background-color: #ffffff;
+    width: 23em;
 }
 ion-content{
 
@@ -40,6 +41,12 @@ ion-content{
 .jumpicon{
     animation: jump 0.5s;
     
+}
+.Noticias{
+    overflow: scroll;  
+    ion-row{
+        width: max-content;
+    }
 }
 
 @keyframes jump{

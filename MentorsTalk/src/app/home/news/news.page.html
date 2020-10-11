@@ -12,17 +12,21 @@
     </h3>    
   </div>
 
-  <ion-card class="update" >   
-    <ion-card-header>
-      <ion-card-title color="primary" style="font-size: 20px;">Update</ion-card-title>
-      <ion-card-subtitle color="medium"> Version 1.0</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content style="font-size: 12px;">
-      Atualização 1.0, Inclusão das paginas News, Agenda, Catalago, Detail, App e melhoria da perfomance <br>
-      Att,<br> 
-      Grupo 10
-    </ion-card-content>
-  </ion-card>
+  <div class="Noticias">
+    <ion-row class="ion-nowrap">
+      <ion-card class="update" *ngFor="let i of noticias" >   
+        <ion-card-header>
+          <ion-card-title color="primary" style="font-size: 20px;">{{i.Titulo}}</ion-card-title>
+          <ion-card-subtitle color="medium">{{i.Sub}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content style="font-size: 12px;">
+        {{i.Descricao}} <br>
+        {{i.Att}} <br>
+        {{i.Ass}}
+        </ion-card-content>
+      </ion-card>
+  </ion-row>
+</div>
 
   <ion-row class="ion-align-items-center">
     <ion-col size="auto">
