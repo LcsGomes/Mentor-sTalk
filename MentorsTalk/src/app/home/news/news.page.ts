@@ -7,6 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPage implements OnInit {
 
+  public Mentoresnovos = [
+    {
+      id:1,
+      Nome:'Ana Maria',
+      Cargo:'Cientista de Dados'
+    },
+    {
+      id:2,
+      Nome:'Adriana Gomes',
+      Cargo:'Desenvolvedor Full Stack'
+    },
+    {
+      id:3,
+      Nome:'Luisa Lopes',
+      Cargo:'Programador C#'
+    },
+    {
+      id:4,
+      Nome:'Tayna Oliveira',
+      Cargo:'Scrum Master'
+    },
+    {
+      id:5,
+      Nome:'Tamires Santos',
+      Cargo:'Desenvolvedora de Apps'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {

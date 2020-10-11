@@ -1,0 +1,43 @@
+#fundo {
+    background-image: linear-gradient(#00aaa4, #01afe9);
+    height:8em;
+    border-radius: 0px 0px 25px 25px;
+    padding: 2px;
+    
+  }
+#slogan{
+    color:#ffffff;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+}
+.TextPrincipal{   
+    font-size: 25px;  
+}
+.news-icon{
+    width: 1.5em;
+    height:1.5em;
+}
+.Cards{
+    margin: 0px 8px 0px 8px;   
+    height: 5em;  
+    background-color: #ffffff;
+    border-radius: 0px;
+}
+.News-Avatar{
+    width: 3em;
+    height:3em;
+}
+.update{
+    margin: 10px 15px 10px 15px;   
+    background-color: #ffffff;
+}
+ion-content{
+
+    --ion-background-color:#E8E8E8;
+}
+.Texto-titulo{
+    margin: 0px 0px 0px 8px;
+    font-size: 18px;
+    color:#00aaa4; 
+}

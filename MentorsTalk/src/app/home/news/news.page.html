@@ -1,9 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>news</ion-title>
+<ion-header >
+  <ion-toolbar color="primary" class="ion-align-items-center">
+    <ion-title class="TextPrincipal">Mentor's Talk</ion-title>
+    <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div id="fundo">
+    <h3 id="slogan">"Quem não compartilha,<br>
+      <b>Não Cresce</b>"     
+    </h3>    
+  </div>
+
+  <ion-card class="update" >   
+    <ion-card-header>
+      <ion-card-title color="primary" style="font-size: 20px;">Update</ion-card-title>
+      <ion-card-subtitle color="medium"> Version 1.0</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content style="font-size: 12px;">
+      Atualização 1.0, Inclusão das paginas News, Agenda, Catalago, Detail, App e melhoria da perfomance <br>
+      Att,<br> 
+      Grupo 10
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="auto">
+      <ion-text class="Texto-titulo">Mentores Novos</ion-text>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-badge color="secondary">Hot</ion-badge>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-card class="Cards" *ngFor="let i of Mentoresnovos">
+    <ion-card-header>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="auto">
+          <ion-avatar class="News-Avatar">
+            <img [src]="'https://randomuser.me/api/portraits/women/'+i.id+'.jpg'"></ion-avatar>
+        </ion-col>
+        <ion-col>
+          <ion-card-title color="primary" style="font-size: 18px;">{{i.Nome}} </ion-card-title>
+          <ion-card-subtitle color="medium">{{i.Cargo}}</ion-card-subtitle>
+        </ion-col>
+        <ion-col size="auto">
+        <ion-icon class="news-icon" name="star-outline"></ion-icon>       
+       </ion-col>
+      </ion-row>
+    </ion-card-header> 
+  </ion-card>
+
 
 </ion-content>
