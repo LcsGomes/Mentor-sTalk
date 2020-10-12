@@ -1,0 +1,23 @@
+.avatar{
+    width: 7em;
+    height: 7em;
+    margin: 15px;
+    border: white;
+}
+ion-content{
+    --ion-background-color:#E8E8E8;
+}
+.TextPrincipal{   
+    font-size: 25px;  
+}
+.ExpProfissional{
+    overflow: scroll;  
+    ion-row{
+        width: max-content;
+    }
+}
+.exp{
+    margin: 0px 15px 10px 15px;   
+    background-color: #ffffff;
+    width: 23em;
+}
