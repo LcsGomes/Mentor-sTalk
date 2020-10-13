@@ -2,7 +2,10 @@
   <ion-toolbar color="primary" class="ion-align-items-center">
     <ion-title class="TextPrincipal">Prazer</ion-title>
     <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
-  </ion-toolbar>
+    <ion-button slot="end" (click)="Add()">
+      <ion-icon  size="large" [name]="isliked ? 'thumbs-up' : 'thumbs-up-outline'"></ion-icon> 
+    </ion-button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -10,7 +13,7 @@
     <ion-col size="auto" >
       <ion-avatar class="avatar">
         <img src="https://randomuser.me/api/portraits/men/49.jpg" alt="User">
-        <ion-badge style="margin-left:20px;">147 Likes</ion-badge>
+        <ion-badge style="margin-left:20px;">{{Like}} Likes</ion-badge>
       </ion-avatar>
     </ion-col>
     <ion-col>
@@ -66,7 +69,7 @@
   </ion-col>  
 </ion-row>
 
-<ion-button expand="block">
+<ion-button expand="block" (click)="showAlert()">
     Agendar
   </ion-button>
 
