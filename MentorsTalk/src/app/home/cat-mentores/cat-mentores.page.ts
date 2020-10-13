@@ -10,11 +10,11 @@ export class CatMentoresPage implements OnInit {
 public Mentores = [
   {
     id:1,
-    Nome:'Clebeer Silva',
+    Nome:'Cleber Silva',
     IdadeUf:'26 anos, São Paulo/SP',
     Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS6b-W-tT4zAEj5ugLGL46MXEKFL2UryQnQDw&usqp=CAU",
     Desc: 'Com experiência em diveresas empresas e projetos, Cleber aparece como uma grande oportunidade para você que deseja aperfeiçoar ou iniciar nesta linguagem.',
-    Linguagem: 'Especialista Java',
+    Linguagem: 'Java',
     liked:false
   },
 
@@ -46,12 +46,33 @@ id:4,
   IdadeUf:'42 anos, Campinas/SP',
   Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR5NlKKwij_EeK3OL1O8LQrtU4bAw7sE16r1w&usqp=CAU",
   Desc: 'Formado em 2003, este professor acumula diversos projetos com implantação de javascript, com experiência internacional esse profissonal tem muito o que transmitir para você iniciante ou apreciador da linguagem.',
-  Linguagem: 'Especialista Python',
+  Linguagem: 'Python',
   liked:false
 }
 
 
+
 ]
+
+public Pesquisa = "";
+
+public ListaFiltrada = this.Mentores.slice();
+
+public filter(campo: string){
+
+  if (campo == ""){
+
+    this.ListaFiltrada = this.Mentores.slice();
+
+  }else{
+    
+    this.ListaFiltrada = this.Mentores.filter(function(t){return t.Linguagem == campo;})
+
+  }
+
+
+}
+
 
   constructor() { }
 

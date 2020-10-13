@@ -12,10 +12,15 @@
 
   <ion-item>
       <ion-icon name="search" slot="start"></ion-icon>
-      <ion-input placeholder="Buscar"></ion-input>
+      
+      <ion-input [(ngModel)] = "Pesquisa" placeholder="Buscar"> </ion-input>
+
+      <ion-button  (click) = "filter(Pesquisa)"> <ion-icon name="search" slot="end"></ion-icon></ion-button>
+
+  
   </ion-item>
 
-  <ion-card class="CardMentor" *ngFor="let i of Mentores">
+  <ion-card class="CardMentor" *ngFor="let i of ListaFiltrada">
 
     <img [src]=i.Imagem>
 
