@@ -10,7 +10,7 @@ export class CatMentoresPage implements OnInit {
 public Mentores = [
   {
     id:1,
-    Nome:'Cleber Silva',
+    Nome:'Clebeer Silva',
     IdadeUf:'26 anos, São Paulo/SP',
     Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS6b-W-tT4zAEj5ugLGL46MXEKFL2UryQnQDw&usqp=CAU",
     Desc: 'Com experiência em diveresas empresas e projetos, Cleber aparece como uma grande oportunidade para você que deseja aperfeiçoar ou iniciar nesta linguagem.',
