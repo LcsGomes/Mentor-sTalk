@@ -4,16 +4,18 @@
     <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
-  <h1>
-    <ion-icon name="code-slash"></ion-icon>
-      Conhecendo os Profissionais
-  </h1>
+  <div id="fundo">
+    <h3 id="saudacoesProfissional">Conhecendo os Profissionais
+    </h3>
+  </div>
 
   <ion-item>
+    
       <ion-icon name="search" slot="start"></ion-icon>
       
-      <ion-input [(ngModel)] = "Pesquisa" placeholder="Buscar"> </ion-input>
+      <ion-input [(ngModel)] = "Pesquisa" placeholder="Pesquisar Linguagem"> </ion-input>
 
       <ion-button  (click) = "filter(Pesquisa)"> <ion-icon name="search" slot="end"></ion-icon></ion-button>
 
