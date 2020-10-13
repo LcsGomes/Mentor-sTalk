@@ -3,7 +3,7 @@
     <ion-title class="TextPrincipal">Prazer</ion-title>
     <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
     <ion-button slot="end" (click)="Add()">
-      <ion-icon  size="large" [name]="isliked ? 'thumbs-up' : 'thumbs-up-outline'"></ion-icon> 
+      <ion-icon  [class.jumpicon]="isliked" size="large" [name]="isliked ? 'thumbs-up' : 'thumbs-up-outline'"></ion-icon> 
     </ion-button>
     </ion-toolbar>
 </ion-header>
