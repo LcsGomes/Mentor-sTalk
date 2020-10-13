@@ -1,9 +1,42 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>CatMentores</ion-title>
+<ion-header >
+  <ion-toolbar color="primary" class="ion-align-items-center">
+    <ion-title class="TextPrincipal">Mentor's Talk</ion-title>
+    <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
   </ion-toolbar>
 </ion-header>
+<ion-content class="ion-padding">
+  <h1>
+    <ion-icon name="code-slash"></ion-icon>
+      Conhecendo os Profissionais
+  </h1>
 
-<ion-content>
+  <ion-item>
+      <ion-icon name="search" slot="start"></ion-icon>
+      <ion-input placeholder="Buscar"></ion-input>
+  </ion-item>
 
+  <ion-card class="CardMentor" *ngFor="let i of Mentores">
+
+    <img [src]=i.Imagem>
+
+    <ion-card-header>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="auto">
+          <ion-avatar>
+            <img [src]="'https://randomuser.me/api/portraits/men/'+i.id+'.jpg'">
+          </ion-avatar>
+        </ion-col>
+        <ion-col>
+          <ion-card-title>{{i.Nome}}</ion-card-title>
+          <ion-card-subtitle>{{i.IdadeUf}}</ion-card-subtitle>
+          <p>{{i.Linguagem}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+
+
+    <ion-card-content>
+      {{i.Desc}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
