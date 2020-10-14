@@ -1,9 +1,85 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Agenda</ion-title>
+<ion-header >
+  <ion-toolbar color="primary" class="ion-align-items-center">
+    <ion-title class="TextPrincipal">Agenda</ion-title>
+    <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card-header>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="auto">
+        <ion-avatar class="News-Avatar">
+          <img [src]="'https://randomuser.me/api/portraits/women/1.jpg'"></ion-avatar>
+      </ion-col>
+      <ion-col>
+        <ion-card-title color="primary" style="font-size: 18px;">Mariana Santos</ion-card-title>
+        <ion-card-subtitle color="medium">Estudante Universitaria</ion-card-subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-card-header> 
+
+  <ion-text class="Texto-titulo">Dados para novo agendamento</ion-text>
+  <ion-card class="Card-form">
+    <ion-item>
+      <ion-label position="stacked">Nome do monitor</ion-label>
+      <ion-input [(ngModel)]="newAgendamento.nameMonitor" autocapitalize="on" autofocus required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input [(ngModel)]="newAgendamento.title" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [min]="this.minDate" [max]="this.maxDate" [(ngModel)]="newAgendamento.date" display-timezone="utc" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="block" (click)="addFavoritos()">
+      Agendar
+    </ion-button>
+  </ion-card>
+
+  <!-- Titulos Seus Agendamentos-->
+  <ion-row class="ion-align-items-center">
+    <ion-col size="auto">
+      <ion-text class="Texto-titulo">Seus agendamentos</ion-text>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-badge color="secondary">{{agendamentos.length}}</ion-badge>
+    </ion-col>
+  </ion-row>
+
+  <!-- Lista de Agendamentos-->
+  <ion-list *ngIf="agendamentos.length > 0 ; else NaoTem">
+    <ion-card class="Card" *ngFor="let i of agendamentos">
+      <ion-card-header>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="auto">
+            <ion-row>
+              <ion-text class="Texto-titulo">{{i.title}}</ion-text>
+            </ion-row>
+            <ion-text class="Monitor-name">com {{i.nameMonitor}}</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-card-title color="primary" style="font-size: 18px;">{{i.Nome}} </ion-card-title>
+            <ion-card-subtitle color="medium">{{i.date}}</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+      </ion-card-header> 
+    </ion-card>
+  </ion-list>
+
+  <!-- Se não tiver favoritos-->
+  <ng-template #NaoTem>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="sad" slot="start"></ion-icon>
+          <ion-label>Você não possui agendamentos</ion-label>
+        </ion-item>
+    </ion-card>
+  </ng-template>
 
 </ion-content>
