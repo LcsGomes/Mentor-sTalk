@@ -1,9 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>CatMentores</ion-title>
+<ion-header >
+  <ion-toolbar color="primary" class="ion-align-items-center">
+    <ion-title class="TextPrincipal">Mentor's Talk</ion-title>
+    <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  
+  <div id="fundo">
+    <h3 id="slogan">"Conhecendo os Profissionais" </h3>    
+  </div>
 
+  <ion-item>      
+      <ion-input [(ngModel)] = "Pesquisa" placeholder="Pesquisar Linguagem"> </ion-input>
+      <ion-button   slot="end" (click) = "filter(Pesquisa)"> <ion-icon name="search"></ion-icon></ion-button>
+  </ion-item>
+
+  <ion-card class="CardMentor" *ngFor="let i of ListaFiltrada">
+
+    <img class="imagemFundo" [src]=i.Imagem>
+
+    <ion-card-header>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="auto">
+          <ion-avatar>
+            <img [src]="'https://randomuser.me/api/portraits/men/'+i.id+'.jpg'">
+          </ion-avatar>
+        </ion-col>
+         <ion-col size="auto">
+          <ion-card-title color="primary" style="font-size: 18px;">{{i.Nome}}</ion-card-title>
+          <ion-card-subtitle color="medium">{{i.IdadeUf}}</ion-card-subtitle>
+        </ion-col>   
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content style="font-size: 14px;">
+      {{i.Desc}}
+    </ion-card-content >   
+    <ion-button fill="clear" size="small">
+      <ion-icon  slot="icon-only" name="star-outline"></ion-icon>       
+    </ion-button>  
+  </ion-card>
 </ion-content>
