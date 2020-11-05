@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Mentores, MentorsService } from 'src/app/services/mentors.service';
+
 
 @Component({
   selector: 'app-cat-mentores',
@@ -7,74 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatMentoresPage implements OnInit {
 
-public Mentores = [
-  {
-    id:1,
-    Nome:'Cleber Silva',
-    IdadeUf:'26 anos, São Paulo/SP',
-    Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS6b-W-tT4zAEj5ugLGL46MXEKFL2UryQnQDw&usqp=CAU",
-    Desc: 'Com experiência em diveresas empresas e projetos, Cleber aparece como uma grande oportunidade para você que deseja aperfeiçoar ou iniciar nesta linguagem.',
-    Linguagem: 'Java',
-    liked:false
-  },
+public mentores = this.mentorsService.mentores
 
-{
-
-  id:2,
-  Nome:'Lucas Sales',
-  IdadeUf:'35 anos, Rio de Janeiro/RJ',
-  Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRdlrDuvlwm0ocjjYAbyNHbaGbWFsop9jVmzw&usqp=CAU",
-  Desc: 'Com ampla bagagem, este professor já participou de diversos projetos nas mais diferentes empresas, formado na USP em 1997, acumula premios e meritos de seu bom desempenho.',
-  Linguagem: 'C#',
-  liked:false
-},
-
-{
-  id:3,
-  Nome:'Paulo Nori',
-  IdadeUf:'18 anos,Belo Horizonte/MG',
-  Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTl4Bcq1T1iv42HGqGm-AXjAryvwS74xjaIhw&usqp=CAU",
-  Desc: 'Prodigio e elogiado por todos na área, Paulo é uma ótima opção para aqueles de desejam se atualizar e conhecer novos caminhos nessa linguagem, não se engane por sua pouca idade o mesmo é considerado um dos melhores em seu segmento.',
-  Linguagem: 'Python',
-  liked:false
-
-},
-
-{
-id:4,
-  Nome:'Rubens Neto',
-  IdadeUf:'42 anos, Campinas/SP',
-  Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR5NlKKwij_EeK3OL1O8LQrtU4bAw7sE16r1w&usqp=CAU",
-  Desc: 'Formado em 2003, este professor acumula diversos projetos com implantação de javascript, com experiência internacional esse profissonal tem muito o que transmitir para você iniciante ou apreciador da linguagem.',
-  Linguagem: 'Javascript',
-  liked:false
-}
-
-
-
-]
 
 public Pesquisa = "";
 
-public ListaFiltrada = this.Mentores.slice();
+public ListaFiltrada = this.mentores.slice();
 
 public filter(campo: string){
 
   if (campo == ""){
 
-    this.ListaFiltrada = this.Mentores.slice();
+    this.ListaFiltrada = this.mentores.slice();
 
   }else{
     
-    this.ListaFiltrada = this.Mentores.filter(function(t){return t.Linguagem == campo;})
+    this.ListaFiltrada = this.mentores.filter(function(t){return t.Linguagem == campo;})
 
   }
 
 
 }
 
+public addFavoritos(id: number){  
+  this.mentorsService.addlistFavorito(id)
+}
+ 
 
-  constructor() { }
+
+  constructor( private mentorsService: MentorsService ) { }
 
   ngOnInit() {
   }

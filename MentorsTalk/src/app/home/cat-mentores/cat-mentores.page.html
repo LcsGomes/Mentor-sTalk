@@ -36,8 +36,8 @@
     <ion-card-content style="font-size: 14px;">
       {{i.Desc}}
     </ion-card-content >   
-    <ion-button fill="clear" size="small">
-      <ion-icon  slot="icon-only" name="star-outline"></ion-icon>       
+    <ion-button fill="clear" size="small" (click)="addFavoritos(i.id)">
+      <ion-icon [class.jumpicon]="i.liked" slot="icon-only" [name]="i.liked ? 'star' : 'star-outline'"></ion-icon>                
     </ion-button>  
   </ion-card>
 </ion-content>

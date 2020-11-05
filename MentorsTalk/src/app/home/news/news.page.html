@@ -43,12 +43,12 @@
 
 
 <!-- Mentores novos-->
-  <ion-card class="Cards" *ngFor="let i of Mentoresnovos">
+  <ion-card class="Cards" *ngFor="let i of mentores">
     <ion-card-header>
       <ion-row class="ion-align-items-center">
         <ion-col size="auto">
           <ion-avatar class="News-Avatar">
-            <img [src]="'https://randomuser.me/api/portraits/women/'+i.id+'.jpg'"></ion-avatar>
+            <img [src]="'https://randomuser.me/api/portraits/men/'+i.id+'.jpg'"></ion-avatar>
         </ion-col>
         <ion-col>
           <ion-card-title color="primary" style="font-size: 18px;">{{i.Nome}} </ion-card-title>
@@ -82,7 +82,7 @@
         <ion-row class="ion-align-items-center">
           <ion-col size="auto">
             <ion-avatar class="News-Avatar">
-              <img [src]="'https://randomuser.me/api/portraits/women/'+i.id+'.jpg'"></ion-avatar>
+              <img [src]="'https://randomuser.me/api/portraits/men/'+i.id+'.jpg'"></ion-avatar>
           </ion-col>
           <ion-col>
             <ion-card-title color="primary" style="font-size: 18px;">{{i.Nome}} </ion-card-title>
