@@ -51,7 +51,7 @@ export class MentorsService {
   }
  
 
-  public mentores: Mentor[] = [ ];
+  public mentores: Mentor[] = [];
 
   public Favoritos = [];
 
