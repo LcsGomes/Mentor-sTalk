@@ -25,8 +25,8 @@ export interface Mentor{
 export class MentorsService {
 
   constructor (private storage: Storage) {
-   this.loadMentores();
    this.loadFavoritos();
+   this.loadMentores();
  
   }
 
@@ -78,5 +78,12 @@ export class MentorsService {
     this.StoreFavoritos();
   }
   
+  public addLike (id: number) { 
+      const index = this.mentores.findIndex(function (t){
+      return t.id == id;
+    }); 
+    this.mentores[index].Likes = this.mentores[index].Likes +1
+    this.StoreMentores();
+  }
   
 }

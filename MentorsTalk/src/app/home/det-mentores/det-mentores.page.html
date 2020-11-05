@@ -1,63 +1,54 @@
 <ion-header >
-  <ion-toolbar color="primary" class="ion-align-items-center">
+  <ion-toolbar color="primary" class="ion-align-items-center"  *ngFor="let i of mentor">
     <ion-title class="TextPrincipal">Prazer</ion-title>
     <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
-    <ion-button slot="end" (click)="Add()">
+    <ion-button slot="end" (click)="Add(i.id)">
       <ion-icon  [class.jumpicon]="isliked" size="large" [name]="isliked ? 'thumbs-up' : 'thumbs-up-outline'"></ion-icon> 
     </ion-button>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-row class="ion-align-items-center">
+  <ion-row class="ion-align-items-center" *ngFor="let i of mentor">
     <ion-col size="auto" >
       <ion-avatar class="avatar">
-        <img src="https://randomuser.me/api/portraits/men/49.jpg" alt="User">
-        <ion-badge style="margin-left:20px;">{{Like}} Likes</ion-badge>
+        <img [src]="'https://randomuser.me/api/portraits/men/'+i.id+'.jpg'" alt="User">
+        <ion-badge style="margin-left:20px;">{{i.Likes}} Likes</ion-badge>
       </ion-avatar>
     </ion-col>
     <ion-col>
-      <h2 style="color:#00aaa4;"> <b></b></h2>
-      <h6></h6>
+      <h2 style="color:#00aaa4;"> <b>{{i.Nome}}</b></h2>
+      <h6>{{i.Cargo}}</h6>
     </ion-col>   
   </ion-row>
 
-  <ion-card style="background-color: #ffffff;"> 
-    <img src="https://picsum.photos/id/237/500/200" />
+  <ion-card style="background-color: #ffffff;" *ngFor="let i of mentor"> 
+    <img [src]="'https://picsum.photos/id/'+i.id+'/500/200'" />
     <ion-card-header>      
       <ion-card-title color="primary" style="font-size: 20px;">Sobre Mim</ion-card-title>
-      <ion-card-subtitle color="medium">Java S2</ion-card-subtitle>
+      <ion-card-subtitle color="medium">Ola!</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content style="font-size: 15px;">
-      Ola, Me chamo Matheus, atualmente trabalho como Progamador Senio Java, o cachorrinho na foto e o spike, Gosto muito de animais e de contribuir com o crescimento das pessoas ao meu redor, ficarei muito feliz se puder te ajudar de alguma forma, Te espero para conversarmos. 
+      {{i.sobre}}
     </ion-card-content>
   </ion-card>
 
-  <div class="ExpProfissional">
+  <div class="ExpProfissional" *ngFor="let i of mentor"> >
     <ion-row class="ion-nowrap">
       <ion-card class="exp">   
         <ion-card-header>
-          <ion-card-title color="primary" style="font-size: 20px;">Anhembi Morumbi</ion-card-title>
-          <ion-card-subtitle color="medium">Professor</ion-card-subtitle>
+          <ion-card-title color="primary" style="font-size: 20px;"> {{i.Empresa}}</ion-card-title>
+          <ion-card-subtitle color="medium">{{i.Cargo}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content style="font-size: 12px;">
-          Atuei como Professor de algoritmo, Logica de Programação, Orientada a Obejtos nas cadeiras de tecnologias da Universidade Anhembi Morumbi
+          {{i.UltimaExp}}
         </ion-card-content>
-      </ion-card>
-      <ion-card class="exp">   
-        <ion-card-header>
-          <ion-card-title color="primary" style="font-size: 20px;">IBM</ion-card-title>
-          <ion-card-subtitle color="medium">Desenvolvedor Java, Gerente de Projetos</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content style="font-size: 12px;">
-          Atuei 5 Anos na IBM como Desenvolvedor Java e desenvolvi varias aplicações, após fui promovido para Gerente de Projetos onde fiquei no cargo por 4 Anos
-        </ion-card-content>
-      </ion-card>
+      </ion-card>     
   </ion-row>
 </div>
 
 
-<h1>{{mentor.id}}</h1>
+
 <ion-row  class="rodape">
   <ion-col style="margin-left:30px;">
     <ion-icon color="primary" size="large" name="logo-facebook" ></ion-icon>

@@ -17,27 +17,12 @@ export class DetMentoresPage implements OnInit {
 
  public mentor : Mentor[];
 
-  public Like = 147;
-  public isliked = false;
 
 
-  public filter(id: number){  
-      this.mentor = this.mentores.filter(function(t){return t.id == id;});
-      console.log(this.mentor);
-  } 
-  
-
-  public Add()
+  public Add(id: number)
   {
+   this.mentorsService.addLike(id)
    
-    if (this.isliked == false){
-       this.Like++
-       this.isliked=true
-    }
-    else{
-      this.Like--
-      this.isliked=false
-    }
   }
   public async showAlert(){  
       const alert = await this.alertController.create({
@@ -50,8 +35,9 @@ export class DetMentoresPage implements OnInit {
   ngOnInit() {
     const NmID = +this.route.snapshot.paramMap.get('id');      
     this.mentores = this.mentorsService.mentores;
-    console.log(this.mentores)
-    this.filter(NmID);
+    this.mentor = this.mentores.filter(function(t){return t.id == NmID;})
+    console.log(this.mentor)
+    
   }
 
 }

@@ -16,11 +16,10 @@
       <ion-button   slot="end" (click) = "filter(Pesquisa)"> <ion-icon name="search"></ion-icon></ion-button>
   </ion-item>
 
+  
   <ion-card class="CardMentor" *ngFor="let i of ListaFiltrada">
-
-    <img class="imagemFundo" [src]=i.Imagem>
-
-    <ion-card-header>
+    <img class="imagemFundo" [src]=i.Imagem>    
+    <ion-card-header [routerLink] ="['/home/det-mentores/', i.id]">
       <ion-row class="ion-align-items-center">
         <ion-col size="auto">
           <ion-avatar>
@@ -40,4 +39,5 @@
       <ion-icon [class.jumpicon]="i.liked" slot="icon-only" [name]="i.liked ? 'star' : 'star-outline'"></ion-icon>                
     </ion-button>  
   </ion-card>
+
 </ion-content>
