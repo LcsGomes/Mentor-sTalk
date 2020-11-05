@@ -1,7 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Storage} from '@ionic/storage';
 
-
+export interface Mentor{
+  id:number, 
+  Nome:string, 
+  IdadeUf:string,
+  Imagem:string, 
+  Desc:string,  
+  Linguagem:string , 
+  liked:boolean,
+  sobre:string,
+  imgsobre:string,
+  UltimaExp:string, 
+  Cargo:string, 
+  Empresa: string , 
+  novo: boolean  , 
+  Likes: number,
+}
 
 
 @Injectable({
@@ -36,7 +51,7 @@ export class MentorsService {
   }
  
 
-  public mentores = [ ];
+  public mentores: Mentor[] = [ ];
 
   public Favoritos = [];
 

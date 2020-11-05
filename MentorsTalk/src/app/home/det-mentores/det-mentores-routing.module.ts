@@ -5,7 +5,7 @@ import { DetMentoresPage } from './det-mentores.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: DetMentoresPage
   }
 ];

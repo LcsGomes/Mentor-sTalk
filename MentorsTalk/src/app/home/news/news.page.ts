@@ -28,6 +28,8 @@ export class NewsPage implements OnInit {
 
   public mentores = this.mentorsService.mentores.filter(function(t){return t.novo == true;})
 
+
+
   public favoritos = this.mentorsService.Favoritos;  
 
 
