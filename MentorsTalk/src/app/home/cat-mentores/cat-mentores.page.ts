@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Mentores, MentorsService } from 'src/app/services/mentors.service';
+import { MentorsService } from 'src/app/services/mentors.service';
 
 
 @Component({
