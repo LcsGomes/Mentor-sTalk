@@ -44,7 +44,7 @@
 
 <!-- Mentores novos-->
   <ion-card class="Cards" *ngFor="let i of mentores" >
-    <ion-card-header>
+    <ion-card-header [routerLink] ="['/home/det-mentores/', i.id]" >
       <ion-row class="ion-align-items-center">
         <ion-col size="auto" >
           <ion-avatar class="News-Avatar">
