@@ -97,7 +97,7 @@ export class MentorsService {
     this.StoreMentores();
   }
 
-  public addAgenda(nome: string, Linguagem:string , date: string)
+  public addAgenda(id: string,nome: string, Linguagem:string , date: string)
   { 
     this.Agenda.push({
       nameMonitor: nome,
@@ -105,7 +105,15 @@ export class MentorsService {
       date: date      
     })
     this.StoreAgenda();
+  }
 
+  public removeAgenda(id: string)
+  {  
+      const index  = this.Agenda.findIndex(function (t){
+        return t.id == id;
+      });  
+      this.Agenda.splice(index,1)
+      this.StoreAgenda();
   }
   
 }

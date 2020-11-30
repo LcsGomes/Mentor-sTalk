@@ -55,7 +55,7 @@ export class AgendaPage implements OnInit {
     if(this.agendamentos.filter(function(t){return t.date == date.getUTCDate() + "/" + (date.getUTCMonth()+1).toString().padStart(2, '0') + "/" + date.getUTCFullYear() + " " +date.getUTCHours() + ":" + date.getUTCMinutes();}).length > 0)
       return;
     else{ 
-    this.mentorsService.addAgenda(this.mentor[0].Nome, this.mentor[0].Linguagem,  date.getUTCDate() + "/" + (date.getUTCMonth()+1).toString().padStart(2, '0') + "/" + date.getUTCFullYear() + " " +date.getUTCHours() + ":" + date.getUTCMinutes())
+    this.mentorsService.addAgenda(this.mentor[0].id,this.mentor[0].Nome, this.mentor[0].Linguagem,  date.getUTCDate() + "/" + (date.getUTCMonth()+1).toString().padStart(2, '0') + "/" + date.getUTCFullYear() + " " +date.getUTCHours() + ":" + date.getUTCMinutes())
   }
     console.log(this.mentor[0].Nome)
 
@@ -65,6 +65,11 @@ export class AgendaPage implements OnInit {
       title: "",
       date: this.minDate
     }
+  }
+
+  public remove (id: string)
+  {
+    this.mentorsService.removeAgenda( id);
   }
 
 
