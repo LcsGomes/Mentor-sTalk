@@ -27,7 +27,7 @@ export class MentorsService {
   constructor (private storage: Storage) {
    this.loadFavoritos();
    this.loadMentores();
- 
+   this.loadAgenda();
   }
 
   private StoreMentores(){
@@ -36,6 +36,11 @@ export class MentorsService {
 
   private StoreFavoritos(){
     this.storage.set('fav', this.Favoritos);
+  }
+
+  
+  private StoreAgenda(){
+    this.storage.set('Agenda', this.Agenda);
   }
 
   private async loadFavoritos(){
@@ -49,11 +54,17 @@ export class MentorsService {
     this.mentores.push(...loadedMentors)
 
   }
+
+  private async loadAgenda(){
+    const loadedAgenda = await this.storage.get('Agenda');
+    this.Agenda.push(...loadedAgenda)
+
+  }
  
 
   public mentores: Mentor[] = [];
-
   public Favoritos = [];
+  public Agenda = [];
 
 
   public addlistFavorito (id: number) {    
@@ -84,6 +95,17 @@ export class MentorsService {
     }); 
     this.mentores[index].Likes = this.mentores[index].Likes +1
     this.StoreMentores();
+  }
+
+  public addAgenda(nome: string, Linguagem:string , date: string)
+  { 
+    this.Agenda.push({
+      nameMonitor: nome,
+      title: Linguagem,
+      date: date      
+    })
+    this.StoreAgenda();
+
   }
   
 }

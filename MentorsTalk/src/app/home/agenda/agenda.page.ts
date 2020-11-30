@@ -14,13 +14,8 @@ export class AgendaPage implements OnInit {
  public mentor : any;
 
 
-  public agendamentos = [ 
-    {
-      nameMonitor: "Andrey Henrique",
-      date: "16/10/2020 15:30",
-      title: "Engenharia de software"
-    }
-  ] 
+  public agendamentos = this.mentorsService.Agenda;
+   
 
   public newAgendamento = {
     nameMonitor: "",
@@ -59,13 +54,8 @@ export class AgendaPage implements OnInit {
 
     if(this.agendamentos.filter(function(t){return t.date == date.getUTCDate() + "/" + (date.getUTCMonth()+1).toString().padStart(2, '0') + "/" + date.getUTCFullYear() + " " +date.getUTCHours() + ":" + date.getUTCMinutes();}).length > 0)
       return;
-    else{
-    this.agendamentos.push({
-      nameMonitor: this.mentor[0].Nome,
-      title:this.mentor[0].Linguagem,
-      date: date.getUTCDate() + "/" + (date.getUTCMonth()+1).toString().padStart(2, '0') + "/" + date.getUTCFullYear() + " " +date.getUTCHours() + ":" + date.getUTCMinutes()
-      
-    })
+    else{ 
+    this.mentorsService.addAgenda(this.mentor[0].Nome, this.mentor[0].Linguagem,  date.getUTCDate() + "/" + (date.getUTCMonth()+1).toString().padStart(2, '0') + "/" + date.getUTCFullYear() + " " +date.getUTCHours() + ":" + date.getUTCMinutes())
   }
     console.log(this.mentor[0].Nome)
 
@@ -76,5 +66,6 @@ export class AgendaPage implements OnInit {
       date: this.minDate
     }
   }
+
 
 }
