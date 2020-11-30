@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MentorsService } from 'src/app/services/mentors.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -37,9 +38,18 @@ public addFavoritos(id: number){
  
 
 
-  constructor( private mentorsService: MentorsService ) { }
+  constructor(private alertController : AlertController, private mentorsService: MentorsService ) { }
 
   ngOnInit() {
   }
+
+  public async showAlert(){  
+    const alert = await this.alertController.create({
+    header: 'Para cadastrar-se como Mentor, favor entrar em contato com nosso suporte através do canal: suporte@mentorstalk.com',
+    buttons: ['Fechar']
+  });
+
+  alert.present();
+}
 
 }

@@ -11,9 +11,19 @@
     <h3 id="slogan">"Conhecendo os Profissionais" </h3>    
   </div>
 
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button expand="block" (click)="showAlert()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-item>      
       <ion-input [(ngModel)] = "Pesquisa" placeholder="Pesquisar Linguagem"> </ion-input>
-      <ion-button   slot="end" (click) = "filter(Pesquisa)"> <ion-icon name="search"></ion-icon></ion-button>
+      <ion-button   slot="end" (click) = "filter(Pesquisa)"> <ion-icon name="search">
+
+      
+
+      </ion-icon></ion-button>
   </ion-item>
 
   
