@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Storage} from '@ionic/storage';
+
 
 export interface Mentor{
   id:number ,
@@ -49,8 +51,10 @@ export class MentorsService {
 
   }
 
-  private async loadMentores(){
-    const loadedMentors = await this.storage.get('mentors') ?? [];
+  public async loadMentores(){
+    // const loadedMentors = await this.storage.get('mentors') ?? [];
+    const loadedMentors = await this.http.get<Mentor[]>('http://localhost:3333/mentor').toPromise()
+    console.log(loadedMentors)
     this.mentores.push(...loadedMentors)
 
   }
