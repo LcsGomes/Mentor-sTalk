@@ -46,7 +46,7 @@ export class MentorsService {
 
   private async loadFavoritos(){    
     // const loadedfavoritos = await this.storage.get('fav') ?? [];
-    const respFavApi = await this.http.get<any[]>('http://localhost:3333/favorito').toPromise()
+    const respFavApi = await this.http.get<any[]>('https://mentortalkapi.herokuapp.com/favorito').toPromise()
     // console.log('loadFavoritos', loadedfavoritos, respFavApi)
     this.Favoritos.push(...respFavApi)
 
@@ -54,7 +54,7 @@ export class MentorsService {
 
   public async loadMentores(){
     // const loadedMentors = await this.storage.get('mentors') ?? [];
-    const loadedMentors = await this.http.get<Mentor[]>('http://localhost:3333/mentor').toPromise()
+    const loadedMentors = await this.http.get<Mentor[]>('https://mentortalkapi.herokuapp.com/mentor').toPromise()
     console.log(loadedMentors)
     this.mentores.push(...loadedMentors)
 
@@ -62,7 +62,7 @@ export class MentorsService {
 
   private async loadAgenda(){
     // const loadedAgenda = await this.storage.get('Agenda') ?? [];
-    const loadedAgenda = await this.http.get<any[]>('http://localhost:3333/agenda').toPromise()
+    const loadedAgenda = await this.http.get<any[]>('https://mentortalkapi.herokuapp.com/agenda').toPromise()
     this.Agenda.push(...loadedAgenda)
 
   }
@@ -71,7 +71,7 @@ export class MentorsService {
   public Favoritos = [];
   public Agenda = [];
 
-
+  
   public async addlistFavorito (id: number) {    
     const index = this.mentores.findIndex(function (t){
       return t.id == id;
@@ -91,10 +91,10 @@ export class MentorsService {
       this.Favoritos.splice(index2,1)
     }
     const mentor = this.mentores[index]
-    await this.http.put(`http://localhost:3333/mentor/${mentor._id}`, mentor).toPromise()
+    await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
 
-    if (mentor.liked) await this.http.post(`http://localhost:3333/favorito`, mentor).toPromise()
-    else await this.http.delete(`http://localhost:3333/favorito/${mentor._id}`).toPromise()
+    if (mentor.liked) await this.http.post(`https://mentortalkapi.herokuapp.com/favorito`, mentor).toPromise()
+    else await this.http.delete(`https://mentortalkapi.herokuapp.com/favorito/${mentor._id}`).toPromise()
     
     this.StoreMentores();
     this.StoreFavoritos();
@@ -106,7 +106,7 @@ export class MentorsService {
     }); 
     this.mentores[index].Likes = this.mentores[index].Likes +1
     const mentor = this.mentores[index]
-    await this.http.put(`http://localhost:3333/mentor/${mentor._id}`, mentor).toPromise()
+    await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
     
     this.StoreMentores();
   }
@@ -118,7 +118,7 @@ export class MentorsService {
       title: Linguagem,
       date: date      
     }
-    await this.http.post('http://localhost:3333/agenda', newAgenda).toPromise()
+    await this.http.post('https://mentortalkapi.herokuapp.com/agenda', newAgenda).toPromise()
     this.Agenda.push(newAgenda)
     this.StoreAgenda();
   }
@@ -129,7 +129,7 @@ export class MentorsService {
         return t.id == id;
       });  
       const agendaForDelete = this.Agenda[index]
-      await this.http.delete(`http://localhost:3333/agenda/${agendaForDelete._id}`).toPromise()
+      await this.http.delete(`https://mentortalkapi.herokuapp.com/agenda/${agendaForDelete._id}`).toPromise()
       // console.log('agenda para deletar:', agendaForDelete)
       this.Agenda.splice(index,1)
       this.StoreAgenda();
