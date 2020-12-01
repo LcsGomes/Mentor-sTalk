@@ -44,9 +44,9 @@
 
 <!-- Mentores novos-->
   <ion-card class="Cards" *ngFor="let i of mentores" >
-    <ion-card-header [routerLink] ="['/home/det-mentores/', i.id]" >
+    <ion-card-header >
       <ion-row class="ion-align-items-center">
-        <ion-col size="auto" >
+        <ion-col size="auto" [routerLink] ="['/home/det-mentores/', i.id]" >
           <ion-avatar class="News-Avatar">
             <img [src]="'https://randomuser.me/api/portraits/men/'+i.id+'.jpg'"></ion-avatar>
         </ion-col>
