@@ -34,6 +34,11 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'meus-agendamentos',
+    loadChildren: () => import('./meus-agendamentos/meus-agendamentos.module').then( m => m.MeusAgendamentosPageModule)
+  },
+
 
 ];
 
