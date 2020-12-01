@@ -19,7 +19,6 @@ export interface Mentor{
   Likes: number,
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -44,9 +43,11 @@ export class MentorsService {
     this.storage.set('Agenda', this.Agenda);
   }
 
-  private async loadFavoritos(){
-    const loadedfavoritos = await this.storage.get('fav') ?? [];
-    this.Favoritos.push(...loadedfavoritos)
+  private async loadFavoritos(){    
+    // const loadedfavoritos = await this.storage.get('fav') ?? [];
+    const respFavApi = await this.http.get<any[]>('http://localhost:3333/favorito').toPromise()
+    // console.log('loadFavoritos', loadedfavoritos, respFavApi)
+    this.Favoritos.push(...respFavApi)
 
   }
 
@@ -70,7 +71,7 @@ export class MentorsService {
   public Agenda = [];
 
 
-  public addlistFavorito (id: number) {    
+  public async addlistFavorito (id: number) {    
     const index = this.mentores.findIndex(function (t){
       return t.id == id;
     });  
@@ -88,15 +89,24 @@ export class MentorsService {
       });  
       this.Favoritos.splice(index2,1)
     }
+    const mentor = this.mentores[index]
+    await this.http.put(`http://localhost:3333/mentor/${mentor._id}`, mentor).toPromise()
+
+    if (mentor.liked) await this.http.post(`http://localhost:3333/favorito`, mentor).toPromise()
+    else await this.http.delete(`http://localhost:3333/favorito/${mentor._id}`).toPromise()
+    
     this.StoreMentores();
     this.StoreFavoritos();
   }
   
-  public addLike (id: number) { 
+  public async addLike (id: number) { 
       const index = this.mentores.findIndex(function (t){
       return t.id == id;
     }); 
     this.mentores[index].Likes = this.mentores[index].Likes +1
+    const mentor = this.mentores[index]
+    await this.http.put(`http://localhost:3333/mentor/${mentor._id}`, mentor).toPromise()
+    
     this.StoreMentores();
   }
 
