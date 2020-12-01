@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Storage} from '@ionic/storage';
 
 export interface Mentor{
+  _id: string,
   id:number ,
   Nome:string , 
   IdadeUf:string ,
@@ -24,7 +25,7 @@ export interface Mentor{
 })
 export class MentorsService {
 
-  constructor (private storage: Storage) {
+  constructor (private storage: Storage, private http: HttpClient) {
    this.loadFavoritos();
    this.loadMentores();
    this.loadAgenda();
@@ -64,8 +65,8 @@ export class MentorsService {
     const loadedAgenda = await this.http.get<any[]>('http://localhost:3333/agenda').toPromise()
     this.Agenda.push(...loadedAgenda)
 
-  } 
-
+  }
+ 
   public mentores: Mentor[] = [];
   public Favoritos = [];
   public Agenda = [];
@@ -132,5 +133,5 @@ export class MentorsService {
       // console.log('agenda para deletar:', agendaForDelete)
       this.Agenda.splice(index,1)
       this.StoreAgenda();
-  } 
+  }
 }
