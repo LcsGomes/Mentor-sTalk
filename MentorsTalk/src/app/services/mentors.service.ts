@@ -44,19 +44,19 @@ export class MentorsService {
   }
 
   private async loadFavoritos(){
-    const loadedfavoritos = await this.storage.get('fav');
+    const loadedfavoritos = await this.storage.get('fav') ?? [];
     this.Favoritos.push(...loadedfavoritos)
 
   }
 
   private async loadMentores(){
-    const loadedMentors = await this.storage.get('mentors');
+    const loadedMentors = await this.storage.get('mentors') ?? [];
     this.mentores.push(...loadedMentors)
 
   }
 
   private async loadAgenda(){
-    const loadedAgenda = await this.storage.get('Agenda');
+    const loadedAgenda = await this.storage.get('Agenda') ?? [];
     this.Agenda.push(...loadedAgenda)
 
   }
