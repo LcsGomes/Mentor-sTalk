@@ -45,7 +45,7 @@ public addFavoritos(id: number){
 
   public async showAlert(){  
     const alert = await this.alertController.create({
-    header: 'Para cadastrar-se como Mentor, favor entrar em contato com nosso suporte através do canal: suporte@mentorstalk.com',
+    header: 'Para cadastrar-se como Mentor, favor entrar em contato conosco através do e-mail: suporte@mentorstalk.com',
     buttons: ['Fechar']
   });
 
