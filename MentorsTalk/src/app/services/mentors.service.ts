@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Storage} from '@ionic/storage';
 
-
 export interface Mentor{
   id:number ,
   Nome:string , 
@@ -60,11 +59,11 @@ export class MentorsService {
   }
 
   private async loadAgenda(){
-    const loadedAgenda = await this.storage.get('Agenda') ?? [];
+    // const loadedAgenda = await this.storage.get('Agenda') ?? [];
+    const loadedAgenda = await this.http.get<any[]>('http://localhost:3333/agenda').toPromise()
     this.Agenda.push(...loadedAgenda)
 
-  }
- 
+  } 
 
   public mentores: Mentor[] = [];
   public Favoritos = [];
@@ -101,23 +100,27 @@ export class MentorsService {
     this.StoreMentores();
   }
 
-  public addAgenda(id: string,nome: string, Linguagem:string , date: string)
+  public async addAgenda(id: string,nome: string, Linguagem:string , date: string)
   { 
-    this.Agenda.push({
+    const newAgenda = {
       nameMonitor: nome,
       title: Linguagem,
       date: date      
-    })
+    }
+    await this.http.post('http://localhost:3333/agenda', newAgenda).toPromise()
+    this.Agenda.push(newAgenda)
     this.StoreAgenda();
   }
 
-  public removeAgenda(id: string)
+  public async removeAgenda(id: string)
   {  
       const index  = this.Agenda.findIndex(function (t){
         return t.id == id;
       });  
+      const agendaForDelete = this.Agenda[index]
+      await this.http.delete(`http://localhost:3333/agenda/${agendaForDelete._id}`).toPromise()
+      // console.log('agenda para deletar:', agendaForDelete)
       this.Agenda.splice(index,1)
       this.StoreAgenda();
-  }
-  
+  } 
 }
