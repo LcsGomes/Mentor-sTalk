@@ -92,10 +92,10 @@ export class MentorsService {
       this.Favoritos.splice(index2,1)
     }
     const mentor = this.mentores[index]
-    await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
+    await this.http.put(`//mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
 
-    if (mentor.liked) await this.http.post(`https://mentortalkapi.herokuapp.com/favorito`, mentor).toPromise()
-    else await this.http.delete(`https://mentortalkapi.herokuapp.com/favorito/${mentor._id}`).toPromise()
+    if (mentor.liked) await this.http.post(`//mentortalkapi.herokuapp.com/favorito`, mentor).toPromise()
+    else await this.http.delete(`//mentortalkapi.herokuapp.com/favorito/${mentor._id}`).toPromise()
     
     this.StoreMentores();
     this.StoreFavoritos();
@@ -116,7 +116,7 @@ export class MentorsService {
       this.mentores[index].Likado = false
     }
     const mentor = this.mentores[index]
-    await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
+    await this.http.put(`//mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
     
     this.StoreMentores();
   }
@@ -128,7 +128,7 @@ export class MentorsService {
       title: Linguagem,
       date: date      
     }
-    await this.http.post('https://mentortalkapi.herokuapp.com/agenda', newAgenda).toPromise()
+    await this.http.post('//mentortalkapi.herokuapp.com/agenda', newAgenda).toPromise()
     this.Agenda.push(newAgenda)
     this.StoreAgenda();
   }
@@ -139,7 +139,7 @@ export class MentorsService {
         return t.id == id;
       });  
       const agendaForDelete = this.Agenda[index]
-      await this.http.delete(`https://mentortalkapi.herokuapp.com/agenda/${agendaForDelete._id}`).toPromise()
+      await this.http.delete(`//mentortalkapi.herokuapp.com/agenda/${agendaForDelete._id}`).toPromise()
       // console.log('agenda para deletar:', agendaForDelete)
       this.Agenda.splice(index,1)
       this.StoreAgenda();
