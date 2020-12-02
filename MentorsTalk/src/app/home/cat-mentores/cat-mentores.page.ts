@@ -14,6 +14,7 @@ public mentores = this.mentorsService.mentores
 
 
 public Pesquisa = "";
+public PesquisaMentor = "";
 
 public ListaFiltrada = this.mentores.slice();
 
@@ -28,8 +29,20 @@ public filter(campo: string){
     this.ListaFiltrada = this.mentores.filter(function(t){return t.Linguagem == campo;})
 
   }
+}
 
 
+public filterMentor(campo: string){
+
+  if (campo == ""){
+
+    this.ListaFiltrada = this.mentores.slice();
+
+  }else{
+    
+    this.ListaFiltrada = this.mentores.filter(function(t){return t.Nome == campo;})
+
+  }
 }
 
 public addFavoritos(id: number){  
@@ -45,7 +58,7 @@ public addFavoritos(id: number){
 
   public async showAlert(){  
     const alert = await this.alertController.create({
-    header: 'Para cadastrar-se como Mentor, favor entrar em contato conosco através do e-mail: suporte@mentorstalk.com',
+    header: 'Para cadastrar-se como Mentor, favor entrar em contato com nosso suporte através do canal: suporte@mentorstalk.com',
     buttons: ['Fechar']
   });
 

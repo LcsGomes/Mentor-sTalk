@@ -11,20 +11,23 @@
     <h3 id="slogan">"Conhecendo os Profissionais" </h3>    
   </div>
 
-  <ion-fab vertical="center" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button expand="block" (click)="showAlert()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-item>      
-      <ion-input [(ngModel)] = "Pesquisa" placeholder="Pesquisar Linguagem"> </ion-input>
-      <ion-button   slot="end" (click) = "filter(Pesquisa)"> <ion-icon name="search">
-
-      
-
+      <ion-input [(ngModel)] = "Pesquisa" placeholder="Linguagem"> </ion-input>
+      <ion-button   slot="end" (click) = "filter(Pesquisa)"> <ion-icon name="search">     
       </ion-icon></ion-button>
   </ion-item>
+
+  <ion-item>      
+    <ion-input [(ngModel)] = "PesquisaMentor" placeholder="Mentor (Nome/Sobrenome)"> </ion-input>
+    <ion-button   slot="end" (click) = "filterMentor(PesquisaMentor)"> <ion-icon name="search">     
+    </ion-icon></ion-button>
+</ion-item>
 
   
   <ion-card class="CardMentor" *ngFor="let i of ListaFiltrada">
