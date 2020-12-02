@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Mentor, MentorsService } from 'src/app/services/mentors.service';
+
 
 @Component({
   selector: 'app-meus-agendamentos',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeusAgendamentosPage implements OnInit {
 
-  constructor() { }
+  constructor(private mentorsService: MentorsService) { }
 
+  public agendamentos = this.mentorsService.Agenda;
+
+  public remove (id: string)
+  {
+    this.mentorsService.removeAgenda( id);
+  }
   ngOnInit() {
   }
 

@@ -1,9 +1,78 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>MeusAgendamentos</ion-title>
+<ion-header >
+  <ion-toolbar color="primary" class="ion-align-items-center">
+    <ion-title class="TextPrincipal">Meus Agendamentos</ion-title>
+    <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card-header>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="auto">
+        <ion-avatar class="News-Avatar">
+          <img [src]="'https://randomuser.me/api/portraits/lego/2.jpg'"></ion-avatar>
+      </ion-col>
+      <ion-col>
+        <ion-card-title color="primary" style="font-size: 18px;">User01</ion-card-title>
+        <ion-card-subtitle color="medium">Estudante</ion-card-subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-card-header> 
+
+  <ion-card style="background-color: #ffffff;" > 
+    <img src="https://esmec.tjce.jus.br/wp-content/uploads/2019/01/calendario-editorial-001.png" />
+    <ion-card-header>      
+      <ion-card-title color="primary" style="font-size: 20px;">Seu Calendario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="font-size: 15px;">
+      Aqui estão os dados dos agendamentos efetuados até o momento.
+    </ion-card-content>
+  </ion-card>
+
+
+   
+  <!-- Titulos Seus Agendamentos-->
+  <ion-row class="ion-align-items-center">
+    <ion-col size="auto">
+      <ion-text class="Texto-titulo">Seus agendamentos</ion-text>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-badge color="secondary">{{agendamentos.length}}</ion-badge>
+    </ion-col>
+  </ion-row>
+
+  <!-- Lista de Agendamentos-->
+  <ion-list *ngIf="agendamentos.length > 0 ; else NaoTem">
+    <ion-card class="Card" *ngFor="let i of agendamentos">
+      <ion-card-header>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="auto">
+            <ion-row>
+              <ion-text class="Texto-titulo">{{i.title}}</ion-text>
+            </ion-row>
+            <ion-text class="Monitor-name">com {{i.nameMonitor}}</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-card-title color="primary" style="font-size: 18px;">{{i.Nome}} </ion-card-title>
+            <ion-card-subtitle color="medium">{{i.date}}</ion-card-subtitle>
+          </ion-col>
+          <ion-button fill="clear" size="small" (click)="remove(i.id)">
+            <ion-icon  name="trash"></ion-icon>
+          </ion-button>  
+        </ion-row>
+      </ion-card-header> 
+    </ion-card>
+  </ion-list>
+
+  <!-- Se não tiver favoritos-->
+  <ng-template #NaoTem>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="sad" slot="start"></ion-icon>
+          <ion-label>Você não possui agendamentos</ion-label>
+        </ion-item>
+    </ion-card>
+  </ng-template>
 
 </ion-content>
