@@ -32,8 +32,8 @@ const routes: Routes = [
         loadChildren: () => import('./meus-agendamentos/meus-agendamentos.module').then( m => m.MeusAgendamentosPageModule)
       },   
       {
-        path: 'home',
-        redirectTo: 'news',
+        path: '',
+        redirectTo: 'home',
         pathMatch: 'full'
       }
     ]
