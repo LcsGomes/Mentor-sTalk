@@ -18,6 +18,7 @@ export interface Mentor{
   Empresa: string, 
   novo: boolean, 
   Likes: number,
+  Likado: boolean
 }
 
 @Injectable({
@@ -104,7 +105,16 @@ export class MentorsService {
       const index = this.mentores.findIndex(function (t){
       return t.id == id;
     }); 
+    if ( this.mentores[index].Likado == false)
+    {
     this.mentores[index].Likes = this.mentores[index].Likes +1
+    this.mentores[index].Likado = true
+    }
+    else
+    {
+      this.mentores[index].Likes = this.mentores[index].Likes -1
+      this.mentores[index].Likado = false
+    }
     const mentor = this.mentores[index]
     await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
     
