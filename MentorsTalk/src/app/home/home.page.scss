@@ -25,3 +25,31 @@
 #container a {
   text-decoration: none;
 }
+
+#fundo {
+  background-image: linear-gradient(#00aaa4, #01afe9);
+  height: 100%;
+  border-radius: 0px 0px 25px 25px;
+  padding: 2px;
+  margin: 0;
+}
+#slogan{
+  color:#ffffff;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) 
+}
+.TextPrincipal{   
+  font-size: 25px;  
+}
+
+.Texto-titulo{
+    margin: 0px 0px 0px 8px;
+    font-size: 18px;
+    color:#00aaa4; 
+}

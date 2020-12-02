@@ -1,3 +1,19 @@
+<ion-header >
+  <ion-toolbar color="primary" class="ion-align-items-center">
+    <ion-title class="TextPrincipal">Mentor's Talk</ion-title>
+    <ion-icon slot="start" size="large" name="logo-electron" size="large"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<!-- tela de fundo com o slogan -->
+<ion-content>
+  <div id="fundo">
+    <h3 id="slogan">Bem vindo ao Mentors Talk,<br>
+      <b>Inicie sua jornada para o conhecimento</b>     
+    </h3>
+  </div>
+</ion-content>
+
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="news">
@@ -11,8 +27,12 @@
     <ion-tab-button tab="cat-mentores">
       <ion-icon name="people"></ion-icon>      
       <ion-label>Mentores</ion-label>
-    </ion-tab-button>   
-    <ion-tab-button tab="agenda">
+    </ion-tab-button>
+    <ion-tab-button tab="det-mentores">
+      <ion-icon name="add-circle"></ion-icon>      
+      <ion-label>Detail</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="meus-agendamentos">
       <ion-icon name="calendar"></ion-icon>      
       <ion-label>Agenda</ion-label>
     </ion-tab-button>

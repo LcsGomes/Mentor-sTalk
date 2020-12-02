@@ -28,17 +28,16 @@ const routes: Routes = [
         loadChildren: () => import('./agenda/agenda.module').then( m => m.AgendaPageModule)
       },
       {
-        path: '',
+        path: 'meus-agendamentos',
+        loadChildren: () => import('./meus-agendamentos/meus-agendamentos.module').then( m => m.MeusAgendamentosPageModule)
+      },   
+      {
+        path: 'home',
         redirectTo: 'news',
         pathMatch: 'full'
       }
     ]
   },
-  {
-    path: 'meus-agendamentos',
-    loadChildren: () => import('./meus-agendamentos/meus-agendamentos.module').then( m => m.MeusAgendamentosPageModule)
-  },
-
 
 ];
 
