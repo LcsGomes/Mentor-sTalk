@@ -1,55 +1,147 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import {ActivatedRoute} from'@angular/router';
-import { Mentor, MentorsService } from 'src/app/services/mentors.service';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Storage} from '@ionic/storage';
 
+export interface Mentor{
+  _id: string,
+  id:number ,
+  Nome:string , 
+  IdadeUf:string ,
+  Imagem:string  , 
+  Desc:string ,
+  Linguagem:string, 
+  liked:boolean,
+  sobre:string,
+  imgsobre:string,
+  UltimaExp:string, 
+  Cargo:string,
+  Empresa: string, 
+  novo: boolean, 
+  Likes: number,
+  Likado: boolean
+}
 
-@Component({
-  selector: 'app-det-mentores',
-  templateUrl: './det-mentores.page.html',
-  styleUrls: ['./det-mentores.page.scss'],
+@Injectable({
+  providedIn: 'root'
 })
+export class MentorsService {
 
-export class DetMentoresPage implements OnInit {
-
-  constructor(private alertController : AlertController, private route: ActivatedRoute, private mentorsService: MentorsService, private router: Router) { }
-
-  public mentores : Mentor[] ;
-
- public mentor : Mentor[];
-
-
-
-  public Add(id: number)
-  {
-   this.mentorsService.addLike(id)
-  }
-  public async showAlert(){  
-      const alert = await this.alertController.create({
-      header: 'Deseja Agendar uma conversa com esse Mentor',
-      buttons: [
-        {
-          text: 'Sim',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            this.router.navigateByUrl("/home/agenda/" + this.route.snapshot.paramMap.get('id'))
-          }
-        }, {
-          text: 'Não',
-          handler: () => {
-            console.log('Confirm Okay');
-          }
-        }
-      ]
-    });
-    alert.present();
+  constructor (private storage: Storage, private http: HttpClient) {
+   this.loadFavoritos();
+   this.loadMentores();
+   this.loadAgenda();
   }
 
-  ngOnInit() {
-    const NmID = +this.route.snapshot.paramMap.get('id');      
-    this.mentores = this.mentorsService.mentores;
-    this.mentor = this.mentores.filter(function(t){return t.id == NmID;});
+  private StoreMentores(){
+    this.storage.set('mentors', this.mentores);
   }
 
+  private StoreFavoritos(){
+    this.storage.set('fav', this.Favoritos);
+  }
+
+  
+  private StoreAgenda(){
+    this.storage.set('Agenda', this.Agenda);
+  }
+
+  private async loadFavoritos(){    
+    // const loadedfavoritos = await this.storage.get('fav') ?? [];
+    const respFavApi = await this.http.get<any[]>('https://mentortalkapi.herokuapp.com/favorito').toPromise()
+    // console.log('loadFavoritos', loadedfavoritos, respFavApi)
+    this.Favoritos.push(...respFavApi)
+
+  }
+
+  public async loadMentores(){
+    // const loadedMentors = await this.storage.get('mentors') ?? [];
+    const loadedMentors = await this.http.get<Mentor[]>('https://mentortalkapi.herokuapp.com/mentor').toPromise()
+    console.log(loadedMentors)
+    this.mentores.push(...loadedMentors)
+
+  }
+
+  private async loadAgenda(){
+    // const loadedAgenda = await this.storage.get('Agenda') ?? [];
+    const loadedAgenda = await this.http.get<any[]>('https://mentortalkapi.herokuapp.com/agenda').toPromise()
+    this.Agenda.push(...loadedAgenda)
+
+  }
+ 
+  public mentores: Mentor[] = [];
+  public Favoritos = [];
+  public Agenda = [];
+
+  
+  public async addlistFavorito (id: number) {    
+    const index = this.mentores.findIndex(function (t){
+      return t.id == id;
+    });  
+    
+    if(this.mentores[index].liked == false)  
+    {
+      this.mentores[index].liked = true;
+      this.Favoritos.push(this.mentores[index])
+    }
+    else
+    {
+      this.mentores[index].liked = false;  
+      const index2  = this.Favoritos.findIndex(function (t){
+        return t.id == id;
+      });  
+      this.Favoritos.splice(index2,1)
+    }
+    const mentor = this.mentores[index]
+    await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
+
+    if (mentor.liked) await this.http.post(`https://mentortalkapi.herokuapp.com/favorito`, mentor).toPromise()
+    else await this.http.delete(`https://mentortalkapi.herokuapp.com/favorito/${mentor._id}`).toPromise()
+    
+    this.StoreMentores();
+    this.StoreFavoritos();
+  }
+  
+  public async addLike (id: number) { 
+      const index = this.mentores.findIndex(function (t){
+      return t.id == id;
+    }); 
+    if ( this.mentores[index].Likado == false)
+    {
+    this.mentores[index].Likes = this.mentores[index].Likes +1
+    this.mentores[index].Likado = true
+    }
+    else
+    {
+      this.mentores[index].Likes = this.mentores[index].Likes -1
+      this.mentores[index].Likado = false
+    }
+    const mentor = this.mentores[index]
+    await this.http.put(`https://mentortalkapi.herokuapp.com/mentor/${mentor._id}`, mentor).toPromise()
+    
+    this.StoreMentores();
+  }
+
+  public async addAgenda(id: string,nome: string, Linguagem:string , date: string)
+  { 
+    const newAgenda = {
+      nameMonitor: nome,
+      title: Linguagem,
+      date: date      
+    }
+    await this.http.post('https://mentortalkapi.herokuapp.com/agenda', newAgenda).toPromise()
+    this.Agenda.push(newAgenda)
+    this.StoreAgenda();
+  }
+
+  public async removeAgenda(id: string)
+  {  
+      const index  = this.Agenda.findIndex(function (t){
+        return t.id == id;
+      });  
+      const agendaForDelete = this.Agenda[index]
+      await this.http.delete(`https://mentortalkapi.herokuapp.com/agenda/${agendaForDelete._id}`).toPromise()
+      // console.log('agenda para deletar:', agendaForDelete)
+      this.Agenda.splice(index,1)
+      this.StoreAgenda();
+  }
 }
